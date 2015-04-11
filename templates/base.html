@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Simple TODO</title>
+  <meta name="description" content="Simple TODO App">
+  <meta name="author" content="Beshr Kayali">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+  <link rel="stylesheet" href="{% static "css/skeleton.css" %}">
+
+  <link rel="stylesheet" href="{% static "todo/todoapp.css" %}">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="one column"></div>
+      <div class="eleven columns app-container">
+        {% block body %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

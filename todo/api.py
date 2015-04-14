@@ -2,7 +2,8 @@ from .models import TodoList, TodoItem
 
 from rest_framework import serializers, viewsets
 from rest_framework import permissions
-from rest_framework.exceptions import PermissionDenied
+
+from django.contrib.auth import get_user_model
 
 
 # Generic permission to get user's own objects
@@ -18,9 +19,14 @@ class BaseTodoViewset(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 
+# User Serializer
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+
+
 # Todo Item Serializer / Viewset
 class TodoItemSerializer(serializers.ModelSerializer):
-
     def __init__(self, *args, **kwargs):
         super(TodoItemSerializer, self).__init__(*args, **kwargs)
 

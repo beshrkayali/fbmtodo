@@ -4,6 +4,7 @@ from django.contrib import admin
 from todo.api import (TodoListViewset, TodoItemViewset)
 from rest_framework import routers
 
+from todo import views
 
 # Register API namespaces
 router = routers.DefaultRouter()
@@ -28,7 +29,8 @@ urlpatterns = [
         include('rest_framework.urls',
                 namespace='rest_framework')),
 
+    url(r'^authenticate/$', views.auth_signinup, name='register'),
 
     # Main page
-    url(r'^$', 'todo.views.home', name='home'),
+    url(r'^$', views.app, name='home'),
 ]

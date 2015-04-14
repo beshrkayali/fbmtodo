@@ -49,15 +49,6 @@ class TodoItemViewset(BaseTodoViewset):
 
         return Serializer
 
-    def perform_create(self, serializer):
-        # Make sure todo being created is owned by authenticated user
-        todolist_pk = serializer.data.get('todolist')
-        if todolist_pk and \
-           TodoList.objects.get(pk=todolist_pk).owner == self.request.user:
-            super(TodoItemViewset, self).perform_create(serializer)
-        else:
-            raise PermissionDenied()
-
     def get_queryset(self):
         return self.request.user.todos.all()
 

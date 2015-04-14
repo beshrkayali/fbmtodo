@@ -29,7 +29,7 @@ urlpatterns = [
         include('rest_framework.urls',
                 namespace='rest_framework')),
 
-    url(r'^authenticate/$', views.auth_signinup, name='register'),
+    url(r'^authenticate/$', views.auth_signinup, name='authenticate'),
 
     # Main page
     url(r'^$', views.app, name='home'),

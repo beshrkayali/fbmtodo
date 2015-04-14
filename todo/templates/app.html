@@ -1,56 +1,62 @@
 {% extends "base.html" %}
 {% load static %}
 {% block body %}
-    <h3 class="logo">Minimal Todo</h3>
-    <hr/>
-    {% if request.user.is_authenticated %}
-    <div class="row">
-      <div class="seven columns">
-        <form class="new-todoitem">
-          <input class="u-full-width" type="text" placeholder='Add something to: Personal' name="text">
-        </form>
+  <h3 class="logo">Minimal Todo</h3>
+  <hr/>
+  {% if request.user.is_authenticated %}
+  <div class="row">
+    <div class="seven columns todos">
+      <form class="new-todoitem">
+        <input class="u-full-width" type="text" placeholder='Create or select a todo list!' name="text">
+      </form>
 
-        <div class="todos">
-        </div>
-
-      </div>
-
-      <div class="five columns todolists">
-        <form class="new-todolist">{% csrf_token %}
-          <input class="u-full-width" type="text" placeholder="New Todo list" name="name">
-        </form>
-        <div class="todolists-container"></div>
-      </div>
-
-    </div>
-    {% else %}
-    <h5>Got stuff need doin'?</h5>
-    <div class="row">
-      <div class="six columns">
-        <form>
-          <h6>Register or sign up!</h6>
-          <label for="username">Username</label>
-          <input class="u-full-width" type="text" placeholder="Spongbob" id="username">
-
-          <label for="password">Password</label>
-          <input class="u-full-width" type="password" placeholder="NOT 'password'" id="password">
-          <input class="button-primary" type="submit" value="Log in or Sign up">
-        </form>
-      </div>
-      <div class="six columns">
-        <h6>This is a simple minimalist todo list app, using:</h6>
-        <ul>
-          <li>Django / Django Rest Framework</li>
-          <li>AngularJS (not 2 yet ¯\_(ツ)_/¯)</li>
-          <li><a href="http://getskeleton.com">SkeletonCSS</a></li>
-          <li>Icon: <a href="https://thenounproject.com/term/list/54833/">List by Ben Markoch</a></li></li>
-        </ul>
+      <div class="todos-container">
       </div>
     </div>
-      
-    {% endif %}
+
+    <div class="five columns todolists">
+      <form class="new-todolist">
+        <input class="u-full-width" type="text" placeholder="New Todo list" name="name" autofocus>
+      </form>
+
+      <div class="todolists-container"></div>
+    </div>
+
+  </div>
+  {% else %}
+  <h5>Got stuff need doin'?</h5>
+  <div class="row">
+    <div class="six columns">
+    <h6>Register or sign up!</h6>
+    <form class="authenticate">
+      <label for="email">Email</label>
+      <input class="u-full-width" type="email" placeholder="spongebob@squarepants.com" id="email" name="email">
+
+      <label for="password">Password</label>
+      <input class="u-full-width" type="password" placeholder="NOT 'password'" id="password" name="password">
+
+      <input class="button-primary" type="submit" value="Log in or Sign up">
+      <div class="errors"></div>
+    </form>
+    </div>
+    <div class="six columns">
+    <h6>This is a simple minimalist todo list app, using:</h6>
+    <ul>
+      <li>Django / Django Rest Framework</li>
+      <li>jQuery, {% verbatim %}{{ Mustache }}{% endverbatim %}</li>
+      <li><a href="http://getskeleton.com">SkeletonCSS</a></li>
+      <li>Icon: <a href="https://thenounproject.com/term/list/54833/">List by Ben Markoch</a></li></li>
+    </ul>
+    </div>
+  </div>
+
+  {% endif %}
 {% endblock %}
 
 {% block scripts %}
+  <script type="text/javascript">
+    {% if request.user.is_authenticated %}var user_email='{{request.user.email}}'; {% endif %}
+  </script>
+
   <script src="{% static 'todo/todoapp.js' %}"></script>
 {% endblock %}

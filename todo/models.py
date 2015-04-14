@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class TodoList(models.Model):
     owner = models.ForeignKey(User, related_name="todolists")
     name = models.CharField(max_length=256)
-    desc = models.TextField()
+    desc = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -18,8 +18,9 @@ PRIORITIES = ((1, 'Low'),
 
 
 class TodoItem(models.Model):
-    user = models.ForeignKey(User, related_name='todos')
+    owner = models.ForeignKey(User, related_name='todos')
     todolist = models.ForeignKey(TodoList, related_name='todos')
+    done = models.BooleanField(default=False)
     text = models.TextField()
     priority = models.IntegerField(choices=PRIORITIES, default=1)
     timestamp = models.DateTimeField(auto_now_add=True)

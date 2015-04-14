@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{% static "todo/todoapp.css" %}">
 </head>
 <body>
+  <div class="loading">Loading...</div>
   <div class="container">
     <div class="row">
       <div class="one column"></div>
@@ -24,5 +25,9 @@
       </div>
     </div>
   </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.8.1/mustache.js"></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

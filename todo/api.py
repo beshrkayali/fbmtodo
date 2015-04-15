@@ -59,7 +59,7 @@ class TodoListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TodoList
-        fields = ('id', 'name', 'desc', 'todos')
+        fields = ('id', 'name', 'todos')
 
 
 class TodoListViewset(BaseTodoViewset):

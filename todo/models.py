@@ -67,7 +67,6 @@ class User(AbstractBaseUser):
 class TodoList(models.Model):
     owner = models.ForeignKey(User, related_name="todolists")
     name = models.CharField(max_length=256)
-    desc = models.TextField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
